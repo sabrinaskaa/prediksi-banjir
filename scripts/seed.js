@@ -291,7 +291,7 @@ async function main() {
     );
   }
 
-  await db.end();
+  //await db.end();
   console.log("✅ Seeding done!");
   console.log("🔐 Login demo: admin@semarang.go.id / admin123");
 }

@@ -43,6 +43,6 @@ export async function GET() {
     });
   }
 
-  await db.end();
+  //await db.end();
   return Response.json({ items });
 }

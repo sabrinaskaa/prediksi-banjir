@@ -105,7 +105,7 @@ export async function GET() {
     ORDER BY category, name
   `);
 
-  await db.end();
+  //await db.end();
 
   return Response.json({ weather, tma, riskPoints, cctv, stations });
 }

@@ -120,7 +120,7 @@ async function main() {
     }
   }
 
-  await db.end();
+  //await db.end();
   console.log("✅ init_db ok: schema applied (single-statement mode, TLS)");
 }
 

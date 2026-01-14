@@ -40,14 +40,21 @@ async function main() {
     // crude station name guess: first non-empty token line
     const pre = blk.slice(0, 160);
     const nameGuess =
-      pre.split("\n").map(s => s.trim()).filter(Boolean)[0]?.slice(0, 120) || "UNKNOWN";
+      pre
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean)[0]
+        ?.slice(0, 120) || "UNKNOWN";
 
     // status text if exists
-    const status = (blk.match(/\b(Aman|Siaga|Awas)\b/i)?.[1] || null);
+    const status = blk.match(/\b(Aman|Siaga|Awas)\b/i)?.[1] || null;
     const statusText = status ? status.toUpperCase() : null;
 
     // ensure station exists
-    const [rows] = await db.query("SELECT id FROM water_stations WHERE name=?", [nameGuess]);
+    const [rows] = await db.query(
+      "SELECT id FROM water_stations WHERE name=?",
+      [nameGuess]
+    );
     let stationId;
     if (!rows.length) {
       const [ins] = await db.query(
@@ -67,7 +74,7 @@ async function main() {
     saved += 1;
   }
 
-  await db.end();
+  //await db.end();
   console.log(`✅ PantauBanjir ingested. rows_saved=${saved}`);
 }
 
