@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 import mysql from "mysql2/promise";
 
 export async function GET() {
