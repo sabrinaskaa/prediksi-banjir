@@ -1,22 +1,15 @@
-import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import { query } from "@/lib/db";
-
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+import bcrypt from "bcryptjs";
 
 export async function POST(req) {
   try {
     const body = await req.json();
-    const email = String(body?.email || "")
-      .trim()
-      .toLowerCase();
-    const password = String(body?.password || "");
+    const email = (body.email || "").trim().toLowerCase();
+    const password = body.password || "";
 
     if (!email || !password) {
-      return NextResponse.json(
-        { ok: false, message: "Email dan password wajib diisi." },
+      return Response.json(
+        { ok: false, message: "Email & password wajib." },
         { status: 400 }
       );
     }
@@ -26,9 +19,9 @@ export async function POST(req) {
       [email]
     );
 
-    if (!rows?.length) {
-      return NextResponse.json(
-        { ok: false, message: "Email/password salah." },
+    if (!rows.length) {
+      return Response.json(
+        { ok: false, message: "Email / password salah." },
         { status: 401 }
       );
     }
@@ -37,14 +30,14 @@ export async function POST(req) {
     const match = await bcrypt.compare(password, user.password_hash);
 
     if (!match) {
-      return NextResponse.json(
-        { ok: false, message: "Email/password salah." },
+      return Response.json(
+        { ok: false, message: "Email / password salah." },
         { status: 401 }
       );
     }
 
-    // minimal response (kalau mau JWT, nanti sekalian)
-    return NextResponse.json({
+    // versi simpel: balikkan user (nanti kalau mau JWT/cookie bisa kita rapihin)
+    return Response.json({
       ok: true,
       user: {
         id: user.id,
@@ -53,10 +46,10 @@ export async function POST(req) {
         role: user.role,
       },
     });
-  } catch (err) {
-    console.error("login error:", err);
-    return NextResponse.json(
-      { ok: false, message: "Server error saat login." },
+  } catch (e) {
+    console.error("login error:", e);
+    return Response.json(
+      { ok: false, message: e.message || "Login error" },
       { status: 500 }
     );
   }
