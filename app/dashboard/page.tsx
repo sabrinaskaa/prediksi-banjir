@@ -90,7 +90,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
 
   const [cctvFilter, setCctvFilter] = useState<"ALL" | "SUNGAI" | "GENANGAN">(
-    "ALL"
+    "ALL",
   );
   const [selectedCctv, setSelectedCctv] = useState<CctvItem | null>(null);
 
@@ -322,7 +322,7 @@ export default function DashboardPage() {
             <div>
               <h2 className="font-semibold">Peta</h2>
               <p className="text-slate-500 text-sm mt-1">
-                Kuning = titik prediksi banjir. Merah = pos sungai/bendungan.
+                Kuning = area rawan banjir. Merah = pos sungai/bendungan.
               </p>
             </div>
             <div className="text-xs text-slate-500">
