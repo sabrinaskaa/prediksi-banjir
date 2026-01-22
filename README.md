@@ -19,7 +19,7 @@ docker compose up -d
 ### B. Setup env
 Copy `.env.local.example` → `.env.local` lalu pastiin:
 ```env
-DATABASE_URL="mysql://root:root@localhost:3306/flooddb"
+DATABASE_URL="mysql://root:root@localhost:3308/flooddb"
 JWT_SECRET="random_panjang"
 ```
 

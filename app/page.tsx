@@ -6,14 +6,11 @@ export default function Home() {
       <div className="max-w-xl bg-white border rounded-2xl p-8 shadow-sm">
         <h1 className="text-2xl font-semibold">Dashboard Monitoring Banjir Semarang</h1>
         <p className="text-slate-500 mt-2">
-          Prototype: login petugas → dashboard → prediksi 1 jam.
+          Kamu hanya bisa membuka dashboard ketika sudah login ya.
         </p>
         <div className="mt-6 flex gap-3">
           <Link href="/login" className="px-4 py-2 rounded-xl bg-sky-600 text-white font-medium">
             Login
-          </Link>
-          <Link href="/dashboard" className="px-4 py-2 rounded-xl bg-white border font-medium">
-            Lihat Dashboard
           </Link>
         </div>
       </div>

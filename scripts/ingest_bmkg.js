@@ -71,7 +71,7 @@ async function main() {
     console.log(`✅ BMKG ingested for area_id=${a.id} adm4=${a.adm4_code} rows=${inserted}`);
   }
 
-  await db.end();
+  //await db.end();
 }
 
 main().catch((e) => {
